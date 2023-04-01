@@ -1,0 +1,13 @@
+diff -ruN clib_/src/common/clib-package.c clib/src/common/clib-package.c
+--- clib_/src/common/clib-package.c	2020-09-08 02:51:24.000000000 +0500
++++ clib/src/common/clib-package.c	2023-04-01 14:38:52.530576337 +0500
+@@ -654,6 +654,9 @@
+     if (retries-- <= 0) {
+       goto error;
+     } else {
++        if (res) {
++            http_get_free(res);
++        }
+ #ifdef HAVE_PTHREADS
+       init_curl_share();
+       _debug("GET %s", json_url);
